@@ -1,0 +1,5 @@
+__pycache__/
+WebScraping-BS4-env/
+
+google_secret_key.json
+*.mp3

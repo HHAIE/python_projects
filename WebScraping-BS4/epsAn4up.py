@@ -4,8 +4,6 @@ import re
 from idm import downIDM
 import os
 
-url = "https://anime4up.tv/anime/one-piece/"
-name = "One Piece"
 
 def down_eps_an4up(url, name, eps_count):
     r = requests.get(url, allow_redirects=True)

@@ -12,6 +12,11 @@ def down_eps_an4up(url, name, eps_count):
 
     new_eps = soup.select("#DivEpisodesList")
 
+    try:
+        os.mkdir("E:/Videos/Videos/Anime/"+name)
+    except:
+        pass
+
     def num_from_str(string):
         return int(re.findall(r'\b\d+\b', string)[0])
     exist_ep = [num_from_str(ep) for ep in os.listdir("E:/Videos/Videos/Anime/"+name)]
@@ -46,13 +51,8 @@ def down_eps_an4up(url, name, eps_count):
             print(link[0], " Anon FHD Link is not working")
 
     for link in down_links:
-        try:
-            os.mkdir("E:/Videos/Videos/Anime/"+name)
-        except:
-            pass
-
-        if not os.path.exists("E:/Videos/Videos/Anime/"+name+"/"+link[1].split("/")[-1]):
+        ep_name = name+ " Episode " + str(num_from_str(link[1].split("/")[-1])) + " [Arabic] " + link[1].split("/")[-1][-4:]
+        if not os.path.exists("E:/Videos/Videos/Anime/"+name+"/"+ep_name):
             path = "E:/Videos/Videos/Anime/"+name
-            name = name + " Episode " + str(num_from_str(link[1].split("/")[-1])) + " [Arabic]" + link[1].split("/")[-1][-4:]
-            downIDM(link[1], path, name)
+            downIDM(link[1], path, ep_name)
 

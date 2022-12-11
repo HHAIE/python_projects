@@ -19,6 +19,11 @@ def down_eps_gogo(url, name, eps_count):
 
     new_eps = soup.select(".tab")[-1].select(".name")
 
+    try:
+        os.mkdir("E:/Videos/Videos/Anime/"+name)
+    except:
+        pass
+
     def num_from_str(string):
         return int(re.findall(r'\b\d+\b', string)[0])
 
@@ -66,12 +71,8 @@ def down_eps_gogo(url, name, eps_count):
     print(fhd_links)
 
     for link in fhd_links:
-        try:
-            os.mkdir("E:/Videos/Videos/Anime/"+name)
-        except:
-            pass
-
-        if not os.path.exists("E:/Videos/Videos/Anime/"+name+"/"+link[0]):
+        ep_name = name+ " Episode " + str(num_from_str(link[1].split("/")[-1])) + link[1].split("/")[-1][-4:]
+        if not os.path.exists("E:/Videos/Videos/Anime/"+name+"/"+ep_name):
             path = "E:/Videos/Videos/Anime/"+name
-            downIDM(link[1], path, link[0] )
+            downIDM(link[1], path, ep_name)
 
